@@ -1,48 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('/layouts/boilerplate') -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <body>
 
-<body>
-    <h3>All Listing</h3>
-    <form method="get" action="/listing/new">
-        <button>Create New Listing!</button>
-    </form>
-    <ul>
-        <% listings.forEach(listing=> { %>
-            <li><img src="<%= listing.image %>" alt=""></li>
-            <li>
-                <a href="/listing/<%= listing._id %>">
-                    <%= listing.title %>
-                </a>
-            </li>
-            <li>
-                <a href="/listing/<%= listing._id %>">
-                    <%= listing.description %>
-                </a>
-            </li>
-            <li>
-                <a href="/listing/<%= listing._id %>">
-                    &#8377; <%= listing.price.toLocaleString("en-IN") %>
-                </a>
-            </li>
-            <li>
-                <a href="/listing/<%= listing._id %>">
-                    <%= listing.location %>
-                </a>
-            </li>
-            <li>
-                <a href="/listing/<%= listing._id %>">
-                    <%= listing.country %>
-                </a>
-            </li>
-            <hr>
-            <% }); %>
-    </ul>
-</body>
+        <%- include('../includes/navbar.ejs') %>
 
-</html>
+            <div class="row row-cols-lg-4 rew-cols-md-3 row-cols-sm-2">
+                <% listings.forEach(listing=> { %>
+                    <a href="/listing/<%= listing._id %>">
+                        <div class="card col">
+                            <img src="<%= listing.image %>" style="height: 18rem;" class="card-img-top"
+                                alt="listing Image">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= listing.title %>
+                                </h5>
+                                <p class="card-text">
+                                    <b> &#8377;
+                                        <%= listing.price.toLocaleString("en-IN") %>
+                                    </b>&nbsp; <span>Night</span>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <% }); %>
+            </div>
+
+            <%- include('../includes/footer.ejs') %>
+    </body>

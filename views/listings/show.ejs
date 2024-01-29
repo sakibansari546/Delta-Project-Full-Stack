@@ -1,48 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('/layouts/boilerplate') -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <body>
 
-<body>
-    <h3>All Listing</h3>
-    <ul>
-        <li><img src="<%= listing.image %>" alt=""></li>
-        <li>
-            <a href="/listing/<%= listing._id %>">
-                <%= listing.title %>
-            </a>
-        </li>
-        <li>
-            <a href="/listing/<%= listing._id %>">
-                <%= listing.description %>
-            </a>
-        </li>
-        <li>
-            <a href="/listing/<%= listing._id %>">
-                <%= listing.price %>
-            </a>
-        </li>
-        <li>
-            <a href="/listing/<%= listing._id %>">
-                <%= listing.location %>
-            </a>
-        </li>
-        <li>
-            <a href="/listing/<%= listing._id %>">
-                <%= listing.country %>
-            </a>
-        </li>
+        <%- include('../includes/navbar.ejs') %>
 
-        <button><a href="/listing/<%= listing._id %>/edit">Edit</a></button>
-        <form action="/listing/<%= listing._id %>?_method=DELETE" method="post">
-            <button>Delete</button>
-        </form>
-        <hr>
-    </ul>
-</body>
 
-</html>
+            <div class="main-show-container">
+                <div class="show-wrapper">
+                    <div class="show-img">
+                        <img src="<%= listing.image %>" alt="">
+                    </div>
+
+                    <div class="show-content">
+                        <div class="show-title"><b>
+                                <%= listing.title %>
+                            </b></div>
+
+                        <div class="show-desc">
+                            <%= listing.description %>
+                        </div>
+                        <div class="show-price"><b> &#8377;
+                                <%= listing.price.toLocaleString("en-IN") %>
+                            </b>
+                        </div>
+                        <div class="show-location">
+                            <%= listing.location %>
+                        </div>
+                        <div class="show-country">
+                            <%= listing.country %>
+                        </div>
+                    </div>
+                    <div class="edit-btns">
+                        <a href="/listing/<%= listing._id %>/edit"><button class="button-17 show-edit"
+                                role="button">Edit</button></a>
+
+                        <form method="post" action="/listing/<%= listing._id %>?_method=DELETE">
+                            <button class="button-17 show-dlete" role="button">Delete</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <%- include('../includes/footer.ejs') %>
+    </body>
+
+    </html>

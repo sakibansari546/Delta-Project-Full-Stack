@@ -3,12 +3,15 @@ const app = express();
 const port = 8080;
 const mongoose = require("mongoose");
 const path = require('path');
-const mongoURL = "mongodb://127.0.0.1:27017/wanderlust";
 const methodOverride = require("method-override");
+const ejsMate = require("ejs-mate");
+const mongoURL = "mongodb://127.0.0.1:27017/wanderlust";
 
 app.use(methodOverride('_method'));
 
 const Listing = require("./models/listing.js");
+
+app.engine('ejs', ejsMate);
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -45,7 +48,6 @@ app.get('/listing/:id', async (req, res) => {
     let { id } = req.params;
     let listing = await Listing.findById(id);
     console.log(listing);
-    // res.send("show")
     res.render("./listings/show.ejs", { listing })
 });
 
