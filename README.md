@@ -14,3 +14,8 @@
 - price => Number
 - location => String
 - contury => String
+
+### add Routs
+#### /listing => for show all listing
+#### /new => for add new listing
+#### /edit => for update listing
