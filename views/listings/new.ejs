@@ -4,32 +4,39 @@
 
         <%- include('../includes/navbar.ejs') %>
 
-            <form class="create-liss-form" action="/listing" method="post">
+            <form class="create-liss-form needs-validation" novalidate action="/listing" method="post">
                 <div class="feild title-fld">
-                    <label for="name">Title : </label>
-                    <input type="text" id="nam" name="listing[title]" placeholder="Add a catchly title" required>
+
+                    <label for="title" class="form-label mb-0">Title : </label>
+                    <input type="text" name="listing[title]" class="form-control" id="title"
+                        placeholder="Add a catchly title" required>
                 </div>
+
+
+
                 <div class="feild desc-fld">
-                    <label for="email">Description :</label>
-                    <textarea name="listing[description]" id="" cols="30" rows="3"></textarea>
+                    <label for="email" class="form-label mb-0">Description :</label>
+                    <textarea name="listing[description]" class="form-control" id="" cols="30" rows="3"
+                        required></textarea>
                 </div>
                 <div class="feild image-fld">
-                    <label for="name">Image Link : </label>
-                    <input type="text" id="nam" name="listing[image]" placeholder="Enter image link/url">
+                    <label for="name" class="form-label mb-0">Image Link : </label>
+                    <input type="text" id="nam" class="form-control" name="listing[image]"
+                        placeholder="Enter image link/url">
                 </div>
                 <div class="wrapper-fld">
                     <div class="feild price-fld">
-                        <label for="phone">Price :</label>
-                        <input type="number" id="phone" name="listing[price]" required>
+                        <label for="phone" class="form-label">Price :</label>
+                        <input type="text" class="form-control" id="phone" name="listing[price]" required>
                     </div>
                     <div class="feild country-fld">
-                        <label for="message">Country :</label>
-                        <input type="text" id="message" name="listing[country]" rows="4" required>
+                        <label for="message" class="form-label">Country :</label>
+                        <input type="text" class="form-control" id="message" name="listing[country]" required>
                     </div>
                 </div>
                 <div class="feild location-fld">
-                    <label for="message">Location :</label>
-                    <input type="text" id="message" name="listing[location]" rows="4" required>
+                    <label for="message" class="form-label">Location :</label>
+                    <input type="text" class="form-control" id="message" name="listing[location]" required>
                 </div>
 
 

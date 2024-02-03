@@ -3,9 +3,13 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
+
 }
 
-body {}
+body {
+    background-color: #000;
+    color: white;
+}
 
 :root {
     --secondary-bg: #F7F6F2;
@@ -247,7 +251,7 @@ footer {
 }
 
 .country-fld input {
-    width: 20vw;
+    /* width: 20vw; */
 }
 
 

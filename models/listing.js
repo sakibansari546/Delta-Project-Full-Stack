@@ -4,11 +4,11 @@ const { Schema } = mongoose;
 const listingSchema = new Schema({
     title: {
         type: String,
-        required: true
+        // required: true
     },
     description: {
         type: String,
-        required: true
+        // required: true
     },
     image: {
         type: String,
@@ -23,11 +23,11 @@ const listingSchema = new Schema({
     },
     location: {
         type: String,
-        required: true
+        // required: true
     },
     country: {
         type: String,
-        required: true
+        // required: true
     },
 });
 

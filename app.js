@@ -6,10 +6,13 @@ const path = require('path');
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const mongoURL = "mongodb://127.0.0.1:27017/wanderlust";
+const wrapAsync = require("./utils/wrapAsync.js")
+const ExpressError = require("./utils/ExpressError.js")
 
 app.use(methodOverride('_method'));
 
 const Listing = require("./models/listing.js");
+
 
 app.engine('ejs', ejsMate);
 
@@ -34,48 +37,64 @@ app.get('/', (req, res) => {
     res.send('Hello, World!');
 });
 
-app.get('/listing', async (req, res) => {
+app.get('/listing', wrapAsync(async (req, res) => {
     let listings = await Listing.find();
     // console.log(listings);
     res.render("./listings/index.ejs", { listings })
-});
+}));
 
 app.get("/listing/new", (req, res) => {
     res.render("./listings/new.ejs")
 })
 
-app.get('/listing/:id', async (req, res) => {
+app.get('/listing/:id', wrapAsync(async (req, res) => {
     let { id } = req.params;
     let listing = await Listing.findById(id);
     console.log(listing);
     res.render("./listings/show.ejs", { listing })
-});
+}));
 
-app.post("/listing", async (req, res) => {
-    let newListing = await new Listing(req.body.listing)
-    // let newListing = await new Listing({ title: title, description: description, price, price, location: location, country: country });
+// Create Route
+app.post("/listing", wrapAsync(async (req, res, next) => {
+    let newListing = await new Listing(req.body.listing);
     newListing.save();
     res.redirect("/listing");
-})
+}))
 
-app.get('/listing/:id/edit', async (req, res) => {
+
+app.get('/listing/:id/edit', wrapAsync(async (req, res) => {
     let { id } = req.params;
     let editListing = await Listing.findById(id);
     res.render("./listings/edit.ejs", { listing: editListing })
-});
+}));
 
-app.put("/listing/:id", async (req, res) => {
+app.put("/listing/:id", wrapAsync(async (req, res) => {
     let { id } = req.params;
     await Listing.findByIdAndUpdate(id, { ...req.body.listing })
     res.redirect(`/listing/${id}`);
-})
+}))
 
-app.delete("/listing/:id", async (req, res) => {
+app.delete("/listing/:id", wrapAsync(async (req, res) => {
     let { id } = req.params;
     let deletedlisting = await Listing.findByIdAndDelete(id);
     console.log(deletedlisting);
     res.redirect(`/listing`);
+}))
+
+
+
+
+// Error Handling
+app.all("*", (req, res, next) => {
+    next(new ExpressError(404, "Page Not faund!"))
 })
+
+app.use((err, req, res, next) => {
+    let { statusCode = 500, errorMessage = "something went wrong" } = err;
+    console.log(err);
+    res.status(statusCode).send(errorMessage);
+})
+
 
 
 

@@ -10,19 +10,25 @@
                         <div class="card col">
                             <img src="<%= listing.image %>" style="height: 18rem;" class="card-img-top"
                                 alt="listing Image">
-                            <div class="card-body">
+                            <div class="card-body bg-white z-3">
                                 <h5 class="card-title">
                                     <%= listing.title %>
                                 </h5>
                                 <p class="card-text">
-                                    <b> &#8377;<%= listing.price.toLocaleString("en-IN") %>
-                                    </b>&nbsp; <span>Night</span>
+                                    <b> &#8377;<%= listing && listing.price ? listing.price.toLocaleString("en-IN")
+                                            : 'N/A' %>
+                                    </b>&nbsp;<span>Night</span>
+
                                 </p>
                             </div>
                         </div>
                     </a>
                     <% }); %>
             </div>
+
+
+
+
 
             <%- include('../includes/footer.ejs') %>
     </body>
