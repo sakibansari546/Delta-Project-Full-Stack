@@ -391,3 +391,17 @@ footer {
     background: #3c4043 !important;
     color: white !important;
 }
+
+
+/* Page Not Faund Page */
+.error-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-not-found {
+    /* width: 100%; */
+    height: 100vh;
+    object-fit: cover;
+}

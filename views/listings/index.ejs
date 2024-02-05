@@ -8,8 +8,8 @@
                 <% listings.forEach(listing=> { %>
                     <a href="/listing/<%= listing._id %>">
                         <div class="card col">
-                            <img src="<%= listing.image %>" style="height: 18rem;" class="card-img-top"
-                                alt="listing Image">
+                            <img src="<%= listing.image %>" style="height: 18rem; border-radius: 0 !important;"
+                                class="card-img-top rounded-0" alt="listing Image">
                             <div class="card-body bg-white z-3">
                                 <h5 class="card-title">
                                     <%= listing.title %>

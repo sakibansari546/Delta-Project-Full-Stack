@@ -12,6 +12,7 @@ const ExpressError = require("./utils/ExpressError.js")
 app.use(methodOverride('_method'));
 
 const Listing = require("./models/listing.js");
+const { Route } = require('express');
 
 
 app.engine('ejs', ejsMate);
@@ -56,20 +57,28 @@ app.get('/listing/:id', wrapAsync(async (req, res) => {
 
 // Create Route
 app.post("/listing", wrapAsync(async (req, res, next) => {
+    if (!req.body.listing) {
+        throw new ExpressError(400, "Send valid data for listing")
+    }
     let newListing = await new Listing(req.body.listing);
     newListing.save();
     res.redirect("/listing");
 }))
 
 
+// Edit Route
 app.get('/listing/:id/edit', wrapAsync(async (req, res) => {
     let { id } = req.params;
     let editListing = await Listing.findById(id);
     res.render("./listings/edit.ejs", { listing: editListing })
 }));
 
+// update Route
 app.put("/listing/:id", wrapAsync(async (req, res) => {
     let { id } = req.params;
+    if (!req.body.listing) {
+        throw new ExpressError(400, "Send valid data for listing")
+    }
     await Listing.findByIdAndUpdate(id, { ...req.body.listing })
     res.redirect(`/listing/${id}`);
 }))
@@ -86,13 +95,12 @@ app.delete("/listing/:id", wrapAsync(async (req, res) => {
 
 // Error Handling
 app.all("*", (req, res, next) => {
-    next(new ExpressError(404, "Page Not faund!"))
+    next(new ExpressError(404, "Page not faund"))
 })
 
 app.use((err, req, res, next) => {
-    let { statusCode = 500, errorMessage = "something went wrong" } = err;
-    console.log(err);
-    res.status(statusCode).send(errorMessage);
+    let { statusCode, massage } = err;
+    res.status(statusCode).render("./listings/error.ejs", { massage });
 })
 
 
