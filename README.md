@@ -19,3 +19,7 @@
 #### /listing => for show all listing
 #### /new => for add new listing
 #### /edit => for update listing
+
+
+## Form Validations
+When enter data in the form, the browser and / or a web server will check th see that the si en the correct formate and with in the constraints set by the pplication.
