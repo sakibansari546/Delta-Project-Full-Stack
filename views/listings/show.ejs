@@ -53,7 +53,8 @@
                             <h2 class="secondary-color py-2 f-24"> Add Your Review </h2>
                             <div class="faq_box-wrapper">
 
-                                <form class="needs-validation" novalidate action="">
+                                <form class="needs-validation" novalidate method="post"
+                                    action="/listing/<%= listing._id %>/review">
                                     <div class="faq_form-box-inner border border-1 border-secondary rounded p-3">
                                         <input type="range" min="1" max="5" name="review[rating]" id="review-username"
                                             placeholder="Name" class="w-100 py-2 form-control rounded-0 pointer"
@@ -73,34 +74,69 @@
                 </div>
                 </div>
             </section>
+            <hr>
 
-            <section class="content-wrapper-faq py-5">
-                <div class="container">
-                    <h3 class="main-head text-center"> Yet Working On It</h3>
-                    <div class="main_reviews-container">
-                        <div class="border py-3 my-2 border-dark rounded reviews_inner container">
-                            <div class="accordian-link d-flex align-items-center pointer py-2 ">
-                                <img src="https://source.unsplash.com/random/3000x3000/?person"
-                                    class="img-fluid user_image rounded-circle2">
-                                <h3 class="reveiew_user_name ps-3">Dj The Lucifier</h3>
+
+
+            <section id="testimonials" class="mb-5">
+                <!--heading--->
+                <div class="testimonial-heading">
+                    <span>Comments</span>
+                    <h4>Clients Says</h4>
+                </div>
+                <!--testimonials-box-container------>
+                <div class="testimonial-box-container">
+                    <!--BOX-1-------------->
+                    <% for( review of listing.reviews ) { %>
+                        <div class="testimonial-box">
+                            <!--top------------------------->
+                            <div class="box-top">
+                                <!--profile----->
+                                <div class="profile">
+                                    <!--img---->
+                                    <div class="profile-img">
+                                        <img
+                                            src="https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png" />
+                                    </div>
+                                    <!--name-and-username-->
+                                    <div class="name-user">
+                                        <strong>Liam mendes</strong>
+                                        <span>@liammendes</span>
+                                    </div>
+                                </div>
+                                <!--reviews------>
+                                <div class="reviews">
+                                    <% for (let i=0; i < 5; i++) { %>
+                                        <% if (i < review.rating) { %>
+                                            <i class="fas fa-star"></i>
+                                            <% } else { %>
+                                                <i class="far fa-star"></i><!-- Empty star -->
+                                                <% } %>
+                                                    <% } %>
+                                </div>
+
                             </div>
-                            <p class="review_answer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum quas
-                                esse odit voluptatem consectetur debitis vero magni facere. Laudantium quia architecto
-                                ratione accusamus ea dicta incidunt animi recusandae quasi cumque.Lorem ipsum dolor sit
-                                amet consectetur adipisicing elit. Eum quas esse odit voluptatem consectetur debitis
-                                vero magni facere. Laudantium quia architecto ratione accusamus ea dicta incidunt animi
-                                recusandae quasi cumque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-                                quas esse odit voluptatem consectetur debitis vero magni facere. Laudantium quia
-                                architecto ratione accusamus ea dicta incidunt animi recusandae quasi </p>
+                            <!--Comments---------------------------------------->
+                            <div class="client-comment">
+                                <p>
+                                    <%= review.comment %>
+                                </p>
+                            </div>
+                            <form method="post"
+                                action="/listing/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                                <button class="button-17 show-dlete">Delete</button>
+                            </form>
                         </div>
-                    </div>
+                        <% } %>
+
+                </div>
             </section>
 
 
 
 
-
             <%- include('../includes/footer.ejs') %>
+                <script src="/js/review.js"></script>
     </body>
 
     </html>
