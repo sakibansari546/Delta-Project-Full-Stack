@@ -7,12 +7,14 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const mongoURL = "mongodb://127.0.0.1:27017/wanderlust";
 const wrapAsync = require("./utils/wrapAsync.js")
-const ExpressError = require("./utils/ExpressError.js")
+const ExpressError = require("./utils/ExpressError.js");
+const listingSchema = require("./schema.js")
 
 app.use(methodOverride('_method'));
 
 const Listing = require("./models/listing.js");
 const { Route } = require('express');
+const { required } = require('joi');
 
 
 app.engine('ejs', ejsMate);
@@ -33,6 +35,19 @@ async function main() {
     await mongoose.connect(mongoURL);
 }
 
+// Validate Schema Middleware
+const validateListing = (req, res, next) => {
+    let { error } = listingSchema.validate(req.body)
+    // console.log(result);
+    if (error) {
+        let errMsg = error.details.map((el) => el.message).join(",")
+        throw new ExpressError(404, errMsg)
+    } else {
+        next();
+    }
+}
+
+
 // Define a route for the root path
 app.get('/', (req, res) => {
     res.send('Hello, World!');
@@ -40,14 +55,26 @@ app.get('/', (req, res) => {
 
 app.get('/listing', wrapAsync(async (req, res) => {
     let listings = await Listing.find();
-    // console.log(listings);
     res.render("./listings/index.ejs", { listings })
 }));
 
+// Create Route
 app.get("/listing/new", (req, res) => {
     res.render("./listings/new.ejs")
 })
 
+app.post("/listing", validateListing, wrapAsync(async (req, res, next) => {
+    // if (!req.body.listing) {
+    //     throw new ExpressError(400, "Send valid data for listing")
+    // }
+
+    let newListing = new Listing(req.body.listing);
+    await newListing.save();
+    res.redirect("/listing");
+}));
+
+
+// Show Route
 app.get('/listing/:id', wrapAsync(async (req, res) => {
     let { id } = req.params;
     let listing = await Listing.findById(id);
@@ -55,15 +82,7 @@ app.get('/listing/:id', wrapAsync(async (req, res) => {
     res.render("./listings/show.ejs", { listing })
 }));
 
-// Create Route
-app.post("/listing", wrapAsync(async (req, res, next) => {
-    if (!req.body.listing) {
-        throw new ExpressError(400, "Send valid data for listing")
-    }
-    let newListing = await new Listing(req.body.listing);
-    newListing.save();
-    res.redirect("/listing");
-}))
+
 
 
 // Edit Route
@@ -74,11 +93,8 @@ app.get('/listing/:id/edit', wrapAsync(async (req, res) => {
 }));
 
 // update Route
-app.put("/listing/:id", wrapAsync(async (req, res) => {
+app.put("/listing/:id", validateListing, wrapAsync(async (req, res) => {
     let { id } = req.params;
-    if (!req.body.listing) {
-        throw new ExpressError(400, "Send valid data for listing")
-    }
     await Listing.findByIdAndUpdate(id, { ...req.body.listing })
     res.redirect(`/listing/${id}`);
 }))
@@ -95,12 +111,12 @@ app.delete("/listing/:id", wrapAsync(async (req, res) => {
 
 // Error Handling
 app.all("*", (req, res, next) => {
-    next(new ExpressError(404, "Page not faund"))
+    next(new ExpressError(404, "Page not found"))
 })
 
 app.use((err, req, res, next) => {
-    let { statusCode, massage } = err;
-    res.status(statusCode).render("./listings/error.ejs", { massage });
+    let { statusCode = 404, message } = err;
+    res.status(statusCode).render("./listings/error.ejs", { err });
 })
 
 

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const { Schema } = mongoose.Schema;
 
 const reviewSchema = new Schema({
     comment: String,
@@ -8,7 +8,10 @@ const reviewSchema = new Schema({
         min: 1,
         max: 5,
     },
-    created_at: Date.now(),
+    created_at: {
+        type: Date,
+        default: Date.now(),
+    }
 });
 
 
