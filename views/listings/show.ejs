@@ -81,8 +81,9 @@
             <section id="testimonials" class="mb-5">
                 <!--heading--->
                 <div class="testimonial-heading">
-                    <span>Comments</span>
-                    <h4>Clients Says</h4>
+                    <% if (listing.reviews.length) {%>
+                        <h2 class="3">Reviws</h2>
+                        <%} %>
                 </div>
                 <!--testimonials-box-container------>
                 <div class="testimonial-box-container">
@@ -123,7 +124,7 @@
                                 </p>
                             </div>
                             <form method="post"
-                                action="/listing/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                                action="/listing/<%= listing._id %>/review/<%= review._id %>?_method=DELETE">
                                 <button class="button-17 show-dlete">Delete</button>
                             </form>
                         </div>
