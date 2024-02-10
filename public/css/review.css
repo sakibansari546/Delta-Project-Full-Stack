@@ -1,6 +1,6 @@
 .faq_dynamic-main,
 .content-wrapper-faq {
-    width: 65vw;
+    width: 60vw;
     margin: 0 auto;
 }
 
@@ -65,8 +65,8 @@ a {
 }
 
 .testimonial-box {
-    min-height: 40vh;
-    width: 500px;
+    /* min-height: 40vh; */
+    width: 60vw;
     /* overflow: scroll; */
     box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
@@ -120,6 +120,10 @@ a {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+}
+
+.client-comment {
+    word-wrap: break-word;
 }
 
 .client-comment p {

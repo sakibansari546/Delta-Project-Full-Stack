@@ -6,14 +6,12 @@ const path = require('path');
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const mongoURL = "mongodb://127.0.0.1:27017/wanderlust";
-const Listing = require("./models/listing.js");
-const wrapAsync = require("./utils/wrapAsync.js")
 const ExpressError = require("./utils/ExpressError.js");
-const { listingSchema, reviewSchema } = require("./schema.js");
-const Review = require("./models/review.js")
-
 const listing = require("./routes/listing.js")
 const review = require("./routes/review.js")
+const cookieParser = require('cookie-parser')
+
+app.use(cookieParser("secretcode"));
 
 app.use(methodOverride('_method'));
 
@@ -65,6 +63,16 @@ app.use("/listing", listing);
 // Passing the Review Route
 app.use("/listing/:id/review", review);
 
+// app.get("/getcookie", (req, res) => {
+//     res.cookie("Greet", "Hello!", { signed: true });
+//     res.cookie("Made in", "India!", { signed: true });
+
+//     console.log(req.cookies)
+
+//     // Cookies that have been signed
+//     console.log('Signed Cookies: ', req.signedCookies)
+//     res.send("send some cookies");
+// })
 
 
 // Error Handling
