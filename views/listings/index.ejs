@@ -4,31 +4,34 @@
 
         <%- include('../includes/navbar.ejs') %>
 
-            <div class="row row-cols-lg-4 rew-cols-md-3 row-cols-sm-2">
-                <% listings.forEach(listing=> { %>
-                    <a href="/listing/<%= listing._id %>">
-                        <div class="card col  mb-5">
-                            <img src="<%= listing.image %>" style="height: 18rem; border-radius: 0 !important;"
-                                class="card-img-top rounded-0" alt="listing Image">
-                            <div class="card-body bg-white z-3">
-                                <h5 class="card-title">
-                                    <%= listing.title %>
-                                </h5>
-                                <p class="card-text">
-                                    <b> &#8377;<%= listing && listing.price ? listing.price.toLocaleString("en-IN")
-                                            : 'N/A' %>
-                                    </b>&nbsp;<span>Night</span>
+            <%- include('../includes/flash.ejs') %>
 
-                                </p>
+
+                <div class="row row-cols-lg-4 rew-cols-md-3 row-cols-sm-2">
+                    <% listings.forEach(listing=> { %>
+                        <a href="/listing/<%= listing._id %>">
+                            <div class="card col mb-5">
+                                <img src="<%= listing.image %>" style="height: 18rem; border-radius: 0 !important;"
+                                    class="card-img-top rounded-0" alt="listing Image">
+                                <div class="card-body bg-white z-3">
+                                    <h5 class="card-title">
+                                        <%= listing.title %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <b> &#8377;<%= listing && listing.price ? listing.price.toLocaleString("en-IN")
+                                                : 'N/A' %>
+                                        </b>&nbsp;<span>Night</span>
+
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <% }); %>
-            </div>
+                        </a>
+                        <% }); %>
+                </div>
 
 
 
 
 
-            <%- include('../includes/footer.ejs') %>
+                <%- include('../includes/footer.ejs') %>
     </body>

@@ -2,142 +2,146 @@
 
     <body>
 
+
         <%- include('../includes/navbar.ejs') %>
 
+            <%- include('../includes/flash.ejs') %>
 
-            <div class="main-show-container">
-                <div class="show-wrapper">
-                    <div class="show-img">
-                        <img src="<%= listing.image %>" alt="">
-                    </div>
 
-                    <div class="show-content">
-                        <div class="show-title"><b>
-                                <%= listing.title %>
-                            </b></div>
-
-                        <div class="show-desc">
-                            <%= listing.description %>
+                <div class="main-show-container">
+                    <div class="show-wrapper">
+                        <div class="show-img">
+                            <img src="<%= listing.image %>" alt="">
                         </div>
-                        <div class="show-price">
-                            <b> &#8377;<%= listing && listing.price ? listing.price.toLocaleString("en-IN") : 'N/A' %>
-                            </b>&nbsp;<span>Night</span>
-                        </div>
-                        <div class="show-location">
-                            <%= listing.location %>
-                        </div>
-                        <div class="show-country">
-                            <%= listing.country %>
-                        </div>
-                    </div>
-                    <div class="edit-btns">
-                        <a href="/listing/<%= listing._id %>/edit"><button class="button-17 show-edit"
-                                role="button">Edit</button></a>
 
-                        <form method="post" action="/listing/<%= listing._id %>?_method=DELETE">
-                            <button class="button-17 show-dlete" role="button">Delete</button>
-                        </form>
+                        <div class="show-content">
+                            <div class="show-title"><b>
+                                    <%= listing.title %>
+                                </b></div>
 
-                    </div>
-                </div>
-            </div>
-
-            <hr>
-
-
-            <!--   ///////// Dynamic Reviews Section ////// -->
-            <section class="faq_dynamic-main">
-                <div class="container">
-                    <div class="listing__faq py-4">
-                        <div class="faq_inner-listing">
-                            <h2 class="secondary-color py-2 f-24"> Add Your Review </h2>
-                            <div class="faq_box-wrapper">
-
-                                <form class="needs-validation" novalidate method="post"
-                                    action="/listing/<%= listing._id %>/review">
-                                    <div class="faq_form-box-inner border border-1 border-secondary rounded p-3">
-                                        <input type="range" min="1" max="5" name="review[rating]" id="review-username"
-                                            placeholder="Name" class="w-100 py-2 form-control rounded-0 pointer"
-                                            required>
-                                        <div class="input-group">
-                                            <textarea name="review[comment]" aria-label="With textarea" rows="4"
-                                                cols="50" id="rewiew_message" placeholder="Message"
-                                                class="form-control mt-3 w-100 rounded-0" required></textarea>
-                                        </div>
-                                        <div class="list_add-faq pt-4"></div>
-                                        <button class="button-17 show-dlete">Submit</button>
-                                </form>
-
+                            <div class="show-desc">
+                                <%= listing.description %>
+                            </div>
+                            <div class="show-price">
+                                <b> &#8377;<%= listing && listing.price ? listing.price.toLocaleString("en-IN") : 'N/A'
+                                        %>
+                                </b>&nbsp; &nbsp;<span>Night</span>
+                            </div>
+                            <div class="show-location">
+                                <%= listing.location %>
+                            </div>
+                            <div class="show-country">
+                                <%= listing.country %>
                             </div>
                         </div>
-                    </div>
-                </div>
-                </div>
-            </section>
-            <hr>
+                        <div class="edit-btns">
+                            <a href="/listing/<%= listing._id %>/edit"><button class="button-17 show-edit"
+                                    role="button">Edit</button></a>
 
-
-
-            <section id="testimonials" class="mb-5">
-                <!--heading--->
-                <div class="testimonial-heading">
-                    <% if (listing.reviews.length) {%>
-                        <h2 class="3">Reviws</h2>
-                        <%} %>
-                </div>
-                <!--testimonials-box-container------>
-                <div class="testimonial-box-container">
-                    <!--BOX-1-------------->
-                    <% for( review of listing.reviews ) { %>
-                        <div class="testimonial-box">
-                            <!--top------------------------->
-                            <div class="box-top">
-                                <!--profile----->
-                                <div class="profile">
-                                    <!--img---->
-                                    <div class="profile-img">
-                                        <img
-                                            src="https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png" />
-                                    </div>
-                                    <!--name-and-username-->
-                                    <div class="name-user">
-                                        <strong>Liam mendes</strong>
-                                        <span>@liammendes</span>
-                                    </div>
-                                </div>
-                                <!--reviews------>
-                                <div class="reviews">
-                                    <% for (let i=0; i < 5; i++) { %>
-                                        <% if (i < review.rating) { %>
-                                            <i class="fas fa-star"></i>
-                                            <% } else { %>
-                                                <i class="far fa-star"></i><!-- Empty star -->
-                                                <% } %>
-                                                    <% } %>
-                                </div>
-
-                            </div>
-                            <!--Comments---------------------------------------->
-                            <div class="client-comment">
-                                <p>
-                                    <%= review.comment %>
-                                </p>
-                            </div>
-                            <form method="post"
-                                action="/listing/<%= listing._id %>/review/<%= review._id %>?_method=DELETE">
-                                <button class="button-17 show-dlete">Delete</button>
+                            <form method="post" action="/listing/<%= listing._id %>?_method=DELETE">
+                                <button class="button-17 show-dlete" role="button">Delete</button>
                             </form>
+
                         </div>
-                        <% } %>
-
+                    </div>
                 </div>
-            </section>
+
+                <hr>
+
+
+                <!--   ///////// Dynamic Reviews Section ////// -->
+                <section class="faq_dynamic-main">
+                    <div class="container">
+                        <div class="listing__faq py-4">
+                            <div class="faq_inner-listing">
+                                <h2 class="secondary-color py-2 f-24"> Add Your Review </h2>
+                                <div class="faq_box-wrapper">
+
+                                    <form class="needs-validation" novalidate method="post"
+                                        action="/listing/<%= listing._id %>/review">
+                                        <div class="faq_form-box-inner border border-1 border-secondary rounded p-3">
+                                            <input type="range" min="1" max="5" name="review[rating]"
+                                                id="review-username" placeholder="Name"
+                                                class="w-100 py-2 form-control rounded-0 pointer" required>
+                                            <div class="input-group">
+                                                <textarea name="review[comment]" aria-label="With textarea" rows="4"
+                                                    cols="50" id="rewiew_message" placeholder="Message"
+                                                    class="form-control mt-3 w-100 rounded-0" required></textarea>
+                                            </div>
+                                            <div class="list_add-faq pt-4"></div>
+                                            <button class="button-17 show-dlete">Submit</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+                <hr>
+
+
+
+                <section id="testimonials" class="mb-5">
+                    <!--heading--->
+                    <div class="testimonial-heading">
+                        <% if (listing.reviews.length) {%>
+                            <h2 class="3">Reviws</h2>
+                            <%} %>
+                    </div>
+                    <!--testimonials-box-container------>
+                    <div class="testimonial-box-container">
+                        <!--BOX-1-------------->
+                        <% for( review of listing.reviews ) { %>
+                            <div class="testimonial-box">
+                                <!--top------------------------->
+                                <div class="box-top">
+                                    <!--profile----->
+                                    <div class="profile">
+                                        <!--img---->
+                                        <div class="profile-img">
+                                            <img
+                                                src="https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png" />
+                                        </div>
+                                        <!--name-and-username-->
+                                        <div class="name-user">
+                                            <strong>Liam mendes</strong>
+                                            <span>@liammendes</span>
+                                        </div>
+                                    </div>
+                                    <!--reviews------>
+                                    <div class="reviews">
+                                        <% for (let i=0; i < 5; i++) { %>
+                                            <% if (i < review.rating) { %>
+                                                <i class="fas fa-star"></i>
+                                                <% } else { %>
+                                                    <i class="far fa-star"></i><!-- Empty star -->
+                                                    <% } %>
+                                                        <% } %>
+                                    </div>
+
+                                </div>
+                                <!--Comments---------------------------------------->
+                                <div class="client-comment">
+                                    <p>
+                                        <%= review.comment %>
+                                    </p>
+                                </div>
+                                <form method="post"
+                                    action="/listing/<%= listing._id %>/review/<%= review._id %>?_method=DELETE">
+                                    <button class="button-17 show-dlete">Delete</button>
+                                </form>
+                            </div>
+                            <% } %>
+
+                    </div>
+                </section>
 
 
 
 
-            <%- include('../includes/footer.ejs') %>
-                <script src="/js/review.js"></script>
+                <%- include('../includes/footer.ejs') %>
+                    <script src="/js/review.js"></script>
     </body>
 
     </html>

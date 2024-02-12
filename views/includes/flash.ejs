@@ -1,0 +1,17 @@
+<% if (success.length) {%>
+    <div class="alert alert-success d-flex align-items-center justify-content-between show" role="alert">
+        <div><strong>Success &nbsp;</strong>
+            <%= success %>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <%} %>
+
+        <% if (error.length) {%>
+            <div class="alert alert-danger d-flex align-items-center justify-content-between show" role="alert">
+                <div><strong>Error &nbsp;</strong>
+                    <%= error %>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <%} %>

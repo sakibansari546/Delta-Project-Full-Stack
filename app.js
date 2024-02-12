@@ -1,15 +1,28 @@
 const express = require('express');
 const app = express();
 const port = 8080;
+
 const mongoose = require("mongoose");
 const path = require('path');
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+
 const mongoURL = "mongodb://127.0.0.1:27017/wanderlust";
 const ExpressError = require("./utils/ExpressError.js");
-const listing = require("./routes/listing.js")
-const review = require("./routes/review.js")
-const cookieParser = require('cookie-parser')
+
+const listingRoute = require("./routes/listing.js");
+const reviewRoute = require("./routes/review.js");
+const userRoute = require("./routes/user.js");
+
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('connect-flash');
+
+const req = require('express/lib/request.js');
+
+const passport = require("passport")
+const LocalStrategy = require("passport-local")
+const User = require("./models/user.js")
 
 app.use(cookieParser("secretcode"));
 
@@ -38,6 +51,17 @@ async function main() {
 }
 
 
+const sessionOptions = {
+    secret: "secretcode",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expire: Date.now() + 1000 * 60 * 60 * 24 * 3,
+        maxAge: 1000 * 60 * 60 * 24 * 3,
+        httpOnly: true,
+    }
+}
+
 
 const validateReview = (req, res, next) => {
     let { error } = reviewSchema.validate(req.body)
@@ -57,22 +81,45 @@ app.get('/', (req, res) => {
 });
 
 
+app.use(session(sessionOptions));
+app.use(flash())
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success")
+    res.locals.error = req.flash("error");
+    next()
+})
+
+// app.get("/demouser", async (req, res) => {
+//     let fakeuser = new User({
+//         email: "fake@gmail.com",
+//         username: "Fake user"
+//     });
+//     let registedUser = await User.register(fakeuser, "fakepassword")
+//     res.send(registedUser);
+// })
+
 // Passing the Listing Route
-app.use("/listing", listing);
+app.use("/listing", listingRoute);
 
 // Passing the Review Route
-app.use("/listing/:id/review", review);
+app.use("/listing/:id/review", reviewRoute);
 
-// app.get("/getcookie", (req, res) => {
-//     res.cookie("Greet", "Hello!", { signed: true });
-//     res.cookie("Made in", "India!", { signed: true });
+// Pssing the user Route
+app.use("/", userRoute);
 
-//     console.log(req.cookies)
 
-//     // Cookies that have been signed
-//     console.log('Signed Cookies: ', req.signedCookies)
-//     res.send("send some cookies");
-// })
+
+
+
+
 
 
 // Error Handling
