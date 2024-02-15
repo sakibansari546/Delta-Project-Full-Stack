@@ -15,6 +15,9 @@
                         </div>
 
                         <div class="show-content">
+                            <h4 class="card-heading mt-3 fw-bold">
+                                @<%= listing.owner.username %>
+                            </h4>
                             <div class="show-title"><b>
                                     <%= listing.title %>
                                 </b></div>
@@ -34,15 +37,17 @@
                                 <%= listing.country %>
                             </div>
                         </div>
-                        <div class="edit-btns">
-                            <a href="/listing/<%= listing._id %>/edit"><button class="button-17 show-edit"
-                                    role="button">Edit</button></a>
+                        <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
+                            <div class="edit-btns">
+                                <a href="/listing/<%= listing._id %>/edit"><button class="button-17 show-edit"
+                                        role="button">Edit</button></a>
 
-                            <form method="post" action="/listing/<%= listing._id %>?_method=DELETE">
-                                <button class="button-17 show-dlete" role="button">Delete</button>
-                            </form>
+                                <form method="post" action="/listing/<%= listing._id %>?_method=DELETE">
+                                    <button class="button-17 show-dlete" role="button">Delete</button>
+                                </form>
 
-                        </div>
+                            </div>
+                            <% } %>
                     </div>
                 </div>
 

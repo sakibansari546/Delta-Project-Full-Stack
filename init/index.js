@@ -18,6 +18,7 @@ async function initDB() {
     try {
         // Uncomment the following line if you want to delete existing data before inserting new data
         await Listing.deleteMany({});
+        initData.data = initData.data.map((obj) => ({ ...obj, owner: "65ce4fd576781e61d9ffaa16" }))
         await Listing.insertMany(initData.data);
         console.log("Data added");
     } catch (err) {

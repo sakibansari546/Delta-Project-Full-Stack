@@ -23,6 +23,15 @@
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+            <div class="register-bts">
+                <% if (!currUser) { %>
+                    <button><a href="/login">LogIn</a></button>
+                    <button><a href="/signup">Signup</a></button>
+                    <% } %>
+                        <% if (currUser) { %>
+                            <button><a href="/logout">Logout</a></button>
+                            <% } %>
+            </div>
         </div>
     </div>
 </nav>

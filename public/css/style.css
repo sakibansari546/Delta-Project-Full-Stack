@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
-
+    text-decoration: none;
 }
 
 body {
@@ -23,9 +23,39 @@ body {
     --fo-jk-r-s: #717171;
 }
 
+.register-bts button a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.register-bts {
+    margin-left: 15vw;
+}
+
+.register-bts button {
+    background: transparent;
+    border: 0;
+    outline: 0;
+    background: #E00B41;
+    padding: 6px 16px;
+    margin-left: 5px;
+}
+
+.register-bts button:first-child a {
+    color: #E00B41;
+}
+
+.register-bts button:first-child {
+    background: transparent;
+    border: 2px solid #E00B41;
+}
+
 .navbar {
     padding: 20px 70px !important;
     box-shadow: 2px 2px 15px rgba(75, 75, 75, 0.642);
+
 }
 
 .navbar-brand {
