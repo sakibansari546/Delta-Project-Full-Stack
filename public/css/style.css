@@ -137,6 +137,7 @@ footer {
     align-items: center;
     justify-content: center;
     gap: 15px;
+    margin-right: 6vw;
 }
 
 .lang a,

@@ -5,8 +5,6 @@ const ExpressError = require("../utils/ExpressError.js");
 const { listingSchema } = require("../schema.js");
 const Listing = require("../models/listing.js");
 const { isLoggedIn, isOwner } = require('../middleware.js');
-const { findById } = require('../models/review.js');
-
 
 // Validate Schema Middleware
 const validateListing = (req, res, next) => {
@@ -42,7 +40,7 @@ router.post("/", isLoggedIn, validateListing, wrapAsync(async (req, res, next) =
 // Show Route
 router.get('/:id', wrapAsync(async (req, res) => {
     let { id } = req.params;
-    let listing = await Listing.findById(id).populate("reviews").populate("owner");
+    let listing = await Listing.findById(id).populate({ path: "reviews", populate: { path: "author" } }).populate("owner");
     console.log(listing);
     if (!listing) {
         req.flash("error", "This Listing does not Exist!")

@@ -54,30 +54,32 @@
                 <hr>
 
 
+
                 <!--   ///////// Dynamic Reviews Section ////// -->
                 <section class="faq_dynamic-main">
                     <div class="container">
                         <div class="listing__faq py-4">
                             <div class="faq_inner-listing">
-                                <h2 class="secondary-color py-2 f-24"> Add Your Review </h2>
-                                <div class="faq_box-wrapper">
-
-                                    <form class="needs-validation" novalidate method="post"
-                                        action="/listing/<%= listing._id %>/review">
-                                        <div class="faq_form-box-inner border border-1 border-secondary rounded p-3">
-                                            <input type="range" min="1" max="5" name="review[rating]"
-                                                id="review-username" placeholder="Name"
-                                                class="w-100 py-2 form-control rounded-0 pointer" required>
-                                            <div class="input-group">
-                                                <textarea name="review[comment]" aria-label="With textarea" rows="4"
-                                                    cols="50" id="rewiew_message" placeholder="Message"
-                                                    class="form-control mt-3 w-100 rounded-0" required></textarea>
-                                            </div>
-                                            <div class="list_add-faq pt-4"></div>
-                                            <button class="button-17 show-dlete">Submit</button>
-                                    </form>
-
-                                </div>
+                                <% if (currUser) { %>
+                                    <h2 class="secondary-color py-2 f-24"> Add Your Review </h2>
+                                    <div class="faq_box-wrapper">
+                                        <form class="needs-validation" novalidate method="post"
+                                            action="/listing/<%= listing._id %>/review">
+                                            <div
+                                                class="faq_form-box-inner border border-1 border-secondary rounded p-3">
+                                                <input type="range" min="1" max="5" name="review[rating]"
+                                                    id="review-username" placeholder="Name"
+                                                    class="w-100 py-2 form-control rounded-0 pointer" required>
+                                                <div class="input-group">
+                                                    <textarea name="review[comment]" aria-label="With textarea" rows="4"
+                                                        cols="50" id="rewiew_message" placeholder="Message"
+                                                        class="form-control mt-3 w-100 rounded-0" required></textarea>
+                                                </div>
+                                                <div class="list_add-faq pt-4"></div>
+                                                <button class="button-17 show-dlete">Submit</button>
+                                        </form>
+                                        <% } %>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -110,8 +112,11 @@
                                         </div>
                                         <!--name-and-username-->
                                         <div class="name-user">
-                                            <strong>Liam mendes</strong>
-                                            <span>@liammendes</span>
+                                            <strong>
+                                                <%= review.author.username %>
+                                            </strong>
+                                            <span>@<%= review.author.username %></span>
+
                                         </div>
                                     </div>
                                     <!--reviews------>
