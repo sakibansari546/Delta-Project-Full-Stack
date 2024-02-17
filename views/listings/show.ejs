@@ -75,7 +75,6 @@
                                                         cols="50" id="rewiew_message" placeholder="Message"
                                                         class="form-control mt-3 w-100 rounded-0" required></textarea>
                                                 </div>
-                                                <div class="list_add-faq pt-4"></div>
                                                 <button class="button-17 show-dlete">Submit</button>
                                         </form>
                                         <% } %>
@@ -86,6 +85,7 @@
                     </div>
                 </section>
                 <hr>
+
 
 
 
@@ -137,10 +137,12 @@
                                         <%= review.comment %>
                                     </p>
                                 </div>
-                                <form method="post"
-                                    action="/listing/<%= listing._id %>/review/<%= review._id %>?_method=DELETE">
-                                    <button class="button-17 show-dlete">Delete</button>
-                                </form>
+                                <% if (currUser && currUser._id.equals(review.author._id)) { %>
+                                    <form method="post"
+                                        action="/listing/<%= listing._id %>/review/<%= review._id %>?_method=DELETE">
+                                        <button class="button-17 show-dlete">Delete</button>
+                                    </form>
+                                    <% } %>
                             </div>
                             <% } %>
 

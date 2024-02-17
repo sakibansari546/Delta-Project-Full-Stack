@@ -4,30 +4,33 @@
 
         <%- include('../includes/flash.ejs') %>
 
+
+
             <div class="signip-container">
-                <div class="form">
-
-                    <h2>Sign up</h2>
-                    <form action="/signup" method="post" class="needs-validation" novalidate>
-                        <input class="form-control" type="text" placeholder="username" name="username" required>
-                        <input class="form-control" type="email" placeholder="email" name="email" required>
-                        <input class="form-control" type="password" placeholder="password" name="password" required>
-                        <button>Sign in</button>
+                <div class="login-container">
+                    <form class="login-form needs-validation" action="/signup" method="post" class="needs-validation"
+                        novalidate>
+                        <h1 class="fs-2"><i class="fa-regular fa-compass"></i> WanderLust</h1>
+                        <p>Create Your Account!</p>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="username"
+                                required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" class="form-control" id="username" name="email" placeholder="email"
+                                required>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password"
+                                placeholder="password" required>
+                        </div>
+                        <button class="font-bold" type="submit">Sign Up</button>
+                        <div class="bottom-text">
+                            <p>Existing Account : <a href="/login">LogIn</a></p>
+                            <p><a href="#">Forgot password?</a></p>
+                        </div>
                     </form>
-                    <p>or sign up with</p>
-
-                    <div class="socials">
-                        <img src="https://i.pinimg.com/originals/b3/da/ac/b3daac6815ebf1516a545db6c3e40a36.jpg" alt="">
-                        <img src="https://icones.pro/wp-content/uploads/2021/02/facebook-icone-orange.png" alt="">
-                        <img src="https://i.pinimg.com/originals/ac/cf/1d/accf1d80314304e11e2bcf9537e13304.jpg" alt="">
-
-                    </div>
                 </div>
-
-                <div class="circle"></div>
-                <div class="circle-1"></div>
-                <div class="circle-2"></div>
             </div>
-
 
     </body>

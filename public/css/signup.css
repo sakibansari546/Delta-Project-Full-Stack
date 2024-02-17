@@ -1,127 +1,110 @@
-:root {
-    --accent: #FFA500;
-    --color1: linear-gradient(to bottom right, #FFA500, #FF5F1F);
-    --transparent: rgb(255, 255, 255, 0.3);
-}
-
-body {
-    font-family: 'Source Sans Pro', sans-serif;
-
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .signip-container {
-    background-color: #EEEEEE;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f2f2;
     display: flex;
     justify-content: center;
-    margin-top: 5vw;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-.signip-container .form {
+.signip-container h1 {
+    font-weight: 700;
+    color: #E00B41 !important;
+}
+
+.login-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.login-form {
     display: flex;
     flex-direction: column;
-    width: 350px;
-    height: 550px;
-    background-color: var(--transparent);
-    color: var(--accent);
-    position: absolute;
-    padding: 10px 30px;
-    margin-top: 50px;
-    backdrop-filter: blur(10px);
-    border: 2px solid var(--transparent);
-    border-radius: 16px;
-    text-align: center;
 }
 
-.signip-container input {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 14px;
-    margin: 10px 0;
-    height: 40px;
-    width: 296px;
-    border: none;
-    border-bottom: 1px solid var(--accent);
-    background-color: transparent;
+.login-form h1 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.login-form p {
+    margin-bottom: 20px;
+    color: #777;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 100%;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #007bff;
     outline: none;
 }
 
-.signip-container button {
-    padding: 10px 22px;
-    border-radius: 10px;
-    color: white;
-    font-weight: 600;
+button {
+    padding: 15px;
     border: none;
-    outline: none;
-    background: #FF5F1F;
-    margin: 10px 0;
-
-}
-
-.signip-container a {
-    background: var(--color1);
-    color: #EEEEEE;
-    text-decoration: none;
-    padding: 12px 0;
-    margin: 20px 0 10px 0;
-    text-align: center;
-    border-radius: 30px;
-    transition: 0.4s;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px;
-}
-
-.signip-container a:hover {
-    transform: translatey(2px);
-    box-shadow: none;
-}
-
-.signip-container .socials {
-    padding: 10px 40px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.signip-container img {
-    max-width: 40px;
-    border-radius: 50%;
-    transition: 0.4s;
-}
-
-.signip-container img:hover {
-    transform: scale(1.1);
+    border-radius: 8px;
+    background-color: #E00B41;
+    color: #fff;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.signip-container .circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background: var(--color1);
-    border-radius: 50%;
-    z-index: -1;
-    width: 100px;
-    height: 100px;
-    transform: translate(-212px, -190px);
+button:hover {
+    background-color: #0056b3;
 }
 
-.signip-container .circle-1 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background: var(--color1);
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    transform: translate(50px, 0px);
-    z-index: -1;
+.bottom-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    color: #777;
 }
 
-.signip-container .circle-2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background: var(--color1);
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    transform: translate(-210px, 50px);
-    z-index: -1;
+.bottom-text p {
+    margin-bottom: 10px;
+}
+
+.bottom-text a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.bottom-text a:hover {
+    color: #0056b3;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .login-container {
+        width: 100%;
+        border-radius: 0;
+    }
 }

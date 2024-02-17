@@ -4,29 +4,31 @@
 
         <%- include('../includes/flash.ejs') %>
 
+
+
             <div class="signip-container">
-                <div class="form">
-
-                    <h2>LogIn</h2>
-                    <form action="/login" method="post" class="needs-validation" novalidate>
-                        <input class="form-control" type="text" placeholder="username" name="username" required>
-                        <input class="form-control" type="password" placeholder="password" name="password" required>
-                        <button>LogIn</button>
+                <div class="login-container">
+                    <form class="login-form needs-validation" action="/login" method="post" class="needs-validation"
+                        novalidate>
+                        <h1>Welcome Back</h1>
+                        <p>Please login to your account</p>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username"
+                                required>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password"
+                                placeholder="Password" required>
+                        </div>
+                        <button type="submit">Login</button>
+                        <div class="bottom-text">
+                            <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+                            <p><a href="">Forgot password?</a></p>
+                        </div>
                     </form>
-                    <p>Login with</p>
-
-                    <div class="socials">
-                        <img src="https://i.pinimg.com/originals/b3/da/ac/b3daac6815ebf1516a545db6c3e40a36.jpg" alt="">
-                        <img src="https://icones.pro/wp-content/uploads/2021/02/facebook-icone-orange.png" alt="">
-                        <img src="https://i.pinimg.com/originals/ac/cf/1d/accf1d80314304e11e2bcf9537e13304.jpg" alt="">
-
-                    </div>
                 </div>
-
-                <div class="circle"></div>
-                <div class="circle-1"></div>
-                <div class="circle-2"></div>
             </div>
+
 
 
     </body>
