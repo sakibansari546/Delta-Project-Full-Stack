@@ -27,7 +27,7 @@ router.post("/signup", wrapAsync(async (req, res, next) => {
             if (err) { return next() }
 
             req.flash("success", "Welcome to WanderLust"); // Fix: Change "Success" to "success"
-            res.redirect("/");
+            res.redirect("/listing");
         })
     } catch (error) {
         req.flash("error", error.message); // Fix: Change "Error" to "error", and "massage" to "message"
@@ -61,7 +61,7 @@ router.get('/logout', (req, res, next) => {
         return next(err)
     });
     req.flash("success", "you are logout now!");
-    res.redirect('/')
+    res.redirect('/listing')
 })
 
 
