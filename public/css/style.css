@@ -23,6 +23,12 @@ body {
     --fo-jk-r-s: #717171;
 }
 
+#map {
+    height: 60vh;
+    width: 60vw;
+}
+
+
 .register-bts button a {
     text-decoration: none;
     color: white;
@@ -193,7 +199,15 @@ footer {
 }
 
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
+input[type=number] {
+    -moz-appearance: textfield;
+}
 
 .create-liss-form {
     background: whitesmoke;

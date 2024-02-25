@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const Review = require("./review.js")
-
+const Review = require("./review.js");
 
 const listingSchema = new Schema({
     title: {
@@ -13,10 +12,13 @@ const listingSchema = new Schema({
         required: true
     },
     image: {
-        type: String,
-        default: "https://thsti.res.in/public/upload/news/1594879784img.png",
-        set: function (v) {
-            return (v === "" || v == null) ? "https://thsti.res.in/public/upload/news/1594879784img.png" : v.toString();
+        url: {
+            type: String,
+            default: 'https://alppetro.co.id/dist/assets/images/default.jpg'
+        },
+        filename: {
+            type: String,
+            default: "ListingImage"
         },
     },
     price: {
@@ -45,9 +47,9 @@ const listingSchema = new Schema({
 
 listingSchema.post("findOneAndDelete", async (listing) => {
     if (listing) {
-        await Review.deleteMany({ _id: { $in: listing.reviews } })
+        await Review.deleteMany({ _id: { $in: listing.reviews } });
     }
-})
+});
 
 const Listing = mongoose.model('Listing', listingSchema);
 module.exports = Listing;

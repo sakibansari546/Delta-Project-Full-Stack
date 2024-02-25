@@ -11,7 +11,7 @@
                 <div class="main-show-container">
                     <div class="show-wrapper">
                         <div class="show-img">
-                            <img src="<%= listing.image %>" alt="">
+                            <img src="<%= listing.image.url %>" alt="">
                         </div>
 
                         <div class="show-content">
@@ -54,11 +54,8 @@
                 <hr>
 
                 <div class="map w-full d-flex align-item-center justify-content-center my-5">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13714.646656349094!2d76.75821532444763!3d30.73331583943964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391b98c55655b423%3A0xf0b7ff9bc175a22b!2sChandigarh%2C%20India!5e0!3m2!1sen!2sus!4v1645375458489!5m2!1sen!2sus"
-                        width=920" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 
-
+                    <div id="map"></div>
                 </div>
                 <hr>
                 <!--   ///////// Dynamic Reviews Section ////// -->
@@ -66,24 +63,41 @@
                     <div class="container">
                         <div class="listing__faq py-4">
                             <div class="faq_inner-listing">
-                                <% if (currUser) { %>
+                                <% //if (currUser) { %>
                                     <h2 class="secondary-color py-2 f-24"> Add Your Review </h2>
                                     <div class="faq_box-wrapper">
                                         <form class="needs-validation" novalidate method="post"
                                             action="/listing/<%= listing._id %>/review">
                                             <div
                                                 class="faq_form-box-inner border border-1 border-secondary rounded p-3">
-                                                <input type="range" min="1" max="5" name="review[rating]"
-                                                    id="review-username" placeholder="Name"
-                                                    class="w-100 py-2 form-control rounded-0 pointer" required>
+                                                <fieldset class="starability-slot">
+                                                    <input type="radio" id="no-rate" class="input-no-rate"
+                                                        name="review[rating]" value="1" checked
+                                                        aria-label="No review[rating]." />
+                                                    <!-- <input type="radio" id="first-rate1" name="review[rating]"
+                                                        value="1" /> -->
+                                                    <label for="first-rate1" title="Terrible">1 star</label>
+                                                    <input type="radio" id="first-rate2" name="review[rating]"
+                                                        value="2" />
+                                                    <label for="first-rate2" title="Not good">2 stars</label>
+                                                    <input type="radio" id="first-rate3" name="review[rating]"
+                                                        value="3" />
+                                                    <label for="first-rate3" title="Average">3 stars</label>
+                                                    <input type="radio" id="first-rate4" name="review[rating]"
+                                                        value="4" />
+                                                    <label for="first-rate4" title="Very good">4 stars</label>
+                                                    <input type="radio" id="first-rate5" name="review[rating]"
+                                                        value="5" />
+                                                    <label for="first-rate5" title="Amazing">5 stars</label>
+                                                </fieldset>
                                                 <div class="input-group">
                                                     <textarea name="review[comment]" aria-label="With textarea" rows="4"
                                                         cols="50" id="rewiew_message" placeholder="Message"
-                                                        class="form-control mt-3 w-100 rounded-0" required></textarea>
+                                                        class="form-control w-100 rounded-0" required></textarea>
                                                 </div>
                                                 <button class="button-17 show-dlete">Submit</button>
                                         </form>
-                                        <% } %>
+                                        <% // } %>
                                     </div>
                             </div>
                         </div>
@@ -162,6 +176,16 @@
                 <%- include('../includes/footer.ejs') %>
 
                     <script src="/js/review.js"></script>
+
+                    <script>
+                        let mapToken = "<%= process.env.MAP_TOKEN %>"
+                        mapboxgl.accessToken = mapToken;
+                        const map = new mapboxgl.Map({
+                            container: 'map', // container ID
+                            center: [76.7794, 30.7333], // starting position [lng, lat]
+                            zoom: 9 // starting zoom
+                        });
+                    </script>
     </body>
 
     </html>

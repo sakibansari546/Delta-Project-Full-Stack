@@ -4,7 +4,8 @@
 
         <%- include('../includes/navbar.ejs') %>
 
-            <form class="create-liss-form needs-validation" novalidate action="/listing" method="post">
+            <form class="create-liss-form needs-validation" novalidate action="/listing" method="post"
+                enctype="multipart/form-data">
                 <div class="feild title-fld">
 
                     <label for="title" class="form-label mb-0">Title : </label>
@@ -17,10 +18,11 @@
                     <textarea name="listing[description]" class="form-control" id="" cols="30" rows="3"
                         required></textarea>
                 </div>
-                <div class="feild image-fld">
-                    <label for="name" class="form-label mb-0">Image Link : </label>
-                    <input type="text" id="nam" class="form-control" name="listing[image]"
-                        placeholder="Enter image link/url">
+
+                <div class="feild image-fld ">
+                    <label for="name" class="form-label mb-0">Upload Image : </label>
+                    <input type="file" id="nam" class="form-control" name="listing[image]"
+                        placeholder="Enter image link/url" required>
                 </div>
                 <div class="wrapper-fld">
                     <div class="feild price-fld">
