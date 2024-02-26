@@ -1,7 +1,10 @@
 <% layout('/layouts/boilerplate') -%>
 
     <body>
-
+        <script>
+            const mapToken = '<%= process.env.MAP_TOKEN %>';
+            const coordinate = <% - JSON.stringify(listing.geometry.coordinates) %>
+        </script>
 
         <%- include('../includes/navbar.ejs') %>
 
@@ -54,7 +57,6 @@
                 <hr>
 
                 <div class="map w-full d-flex align-item-center justify-content-center my-5">
-
                     <div id="map"></div>
                 </div>
                 <hr>
@@ -176,16 +178,10 @@
                 <%- include('../includes/footer.ejs') %>
 
                     <script src="/js/review.js"></script>
+                    <script src="/js/map.js"></script>
 
-                    <script>
-                        let mapToken = "<%= process.env.MAP_TOKEN %>"
-                        mapboxgl.accessToken = mapToken;
-                        const map = new mapboxgl.Map({
-                            container: 'map', // container ID
-                            center: [76.7794, 30.7333], // starting position [lng, lat]
-                            zoom: 9 // starting zoom
-                        });
-                    </script>
+
+
     </body>
 
     </html>
