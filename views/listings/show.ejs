@@ -1,10 +1,7 @@
 <% layout('/layouts/boilerplate') -%>
 
     <body>
-        <script>
-            const mapToken = '<%= process.env.MAP_TOKEN %>';
-            const coordinate = <% - JSON.stringify(listing.geometry.coordinates) %>
-        </script>
+
 
         <%- include('../includes/navbar.ejs') %>
 
@@ -176,6 +173,11 @@
 
 
                 <%- include('../includes/footer.ejs') %>
+                    <script>
+                        const mapToken = '<%= process.env.MAP_TOKEN %>';
+                        const coordinates = <% - JSON.stringify(listing.geometry.location.coordinates) %>
+                        // console.log(coordinate);
+                    </script>
 
                     <script src="/js/review.js"></script>
                     <script src="/js/map.js"></script>

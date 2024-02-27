@@ -17,7 +17,7 @@ module.exports.renderNewForm = (req, res) => {
 module.exports.showListing = async (req, res) => {
     let { id } = req.params;
     let listing = await Listing.findById(id).populate({ path: "reviews", populate: { path: "author" } }).populate("owner");
-    console.log(listing);
+    console.log(listing.geometry.location.coordinates);
     if (!listing) {
         req.flash("error", "This Listing does not Exist!")
         res.redirect("/listing")
@@ -66,7 +66,7 @@ module.exports.createListing = async (req, res, next) => {
             newListing.geometry.location.coordinates = response.body.features[0].geometry.coordinates;
         } else {
             // Handle the situation where no geocoding results are found
-        }
+        } s
 
         let savedListing = await newListing.save();
         console.log(savedListing);
