@@ -1,12 +1,9 @@
+<!-- index.ejs -->
 <% layout('/layouts/boilerplate') -%>
 
     <body>
-
         <%- include('../includes/navbar.ejs') %>
-
             <%- include('../includes/flash.ejs') %>
-
-
                 <div class="row row-cols-lg-4 rew-cols-md-3 row-cols-sm-2">
                     <% listings.forEach(listing=> { %>
                         <a href="/listing/<%= listing._id %>">
@@ -14,27 +11,52 @@
                                 <img src="<%= listing.image.url %>" style="height: 18rem; border-radius: 0 !important;"
                                     class="card-img-top rounded-0" alt="listing Image">
                                 <div class="card-body bg-white z-3">
-                                    <h4 class="fw-bold">
-                                        @<%= listing.owner.username %>
+                                    <h4 class="fw-bold">@<%= listing.owner.username %>
                                     </h4>
                                     <h5 class="card-title">
                                         <%= listing.title %>
                                     </h5>
                                     <p class="card-text">
-                                        <b> &#8377;<%= listing && listing.price ? listing.price.toLocaleString("en-IN")
-                                                : 'N/A' %>
-                                        </b>&nbsp;<span>Night</span>
-
+                                        <b>&#8377;<%= listing && listing.price ? listing.price.toLocaleString("en-IN")
+                                                : 'N/A' %></b>&nbsp;<span>Night</span>
                                     </p>
                                 </div>
                             </div>
                         </a>
                         <% }); %>
                 </div>
-
-
-
-
-
                 <%- include('../includes/footer.ejs') %>
+                    <script>
+                        // JavaScript code to handle search form submission and update listings
+                        document.getElementById('searchForm').addEventListener('submit', async function (event) {
+                            // event.preventDefault(); // Prevent default form submission behavior
+                            const country = document.getElementById('countryInput').value;
+                            try {
+                                const response = await fetch(`/listing/search?country=${country}`);
+                                const listings = await response.json();
+                                const listingsContainer = document.getElementById('listingsContainer');
+                                listingsContainer.innerHTML = ''; // Clear existing listings
+                                listings.forEach(listing => {
+                                    const listingElement = document.createElement('a');
+                                    listingElement.setAttribute('href', `/listing/${listing._id}`);
+                                    listingElement.classList.add('col', 'mb-5');
+                                    listingElement.innerHTML = `
+                            <div class="card">
+                                <img src="${listing.image.url}" style="height: 18rem; border-radius: 0 !important;" class="card-img-top rounded-0" alt="listing Image">
+                                <div class="card-body bg-white z-3">
+                                    <h4 class="fw-bold">@${listing.owner.username}</h4>
+                                    <h5 class="card-title">${listing.title}</h5>
+                                    <p class="card-text">
+                                        <b>&#8377;${listing && listing.price ? listing.price.toLocaleString("en-IN") : 'N/A'}</b>&nbsp;<span>Night</span>
+                                    </p>
+                                </div>
+                            </div>
+                        `;
+                                    listingsContainer.appendChild(listingElement);
+                                });
+                            } catch (error) {
+                                console.error('Error fetching search results:', error);
+                            }
+                        });
+                    </script>
     </body>

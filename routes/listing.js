@@ -29,6 +29,23 @@ const validateListing = (req, res, next) => {
 // Index Route
 router.get('/', wrapAsync(listingController.index));
 
+router.get('/search', async (req, res) => {
+    try {
+        const { country } = req.query;
+        let listings;
+        if (!country) {
+            listings = await Listing.find().populate("owner");
+        } else {
+            listings = await Listing.find({ country }).populate("owner");
+        }
+        res.render("./listings/index.ejs", { listings });
+    } catch (error) {
+        console.error('Error searching listings:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
 // Create Route
 router.get("/new", isLoggedIn, listingController.renderNewForm)
 

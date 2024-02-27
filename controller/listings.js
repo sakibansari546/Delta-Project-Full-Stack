@@ -9,6 +9,8 @@ module.exports.index = async (req, res) => {
     res.render("./listings/index.ejs", { listings })
 }
 
+
+
 module.exports.renderNewForm = (req, res) => {
     res.render("./listings/new.ejs")
 }
@@ -22,7 +24,9 @@ module.exports.showListing = async (req, res) => {
         req.flash("error", "This Listing does not Exist!")
         res.redirect("/listing")
     }
-    res.render("./listings/show.ejs", { listing })
+    const coordinates = listing.geometry.location.coordinates;
+    // Rendering the EJS template and passing the listing object along with coordinates
+    res.render("./listings/show.ejs", { listing, coordinates });
 }
 
 module.exports.createListing = async (req, res, next) => {
@@ -66,7 +70,7 @@ module.exports.createListing = async (req, res, next) => {
             newListing.geometry.location.coordinates = response.body.features[0].geometry.coordinates;
         } else {
             // Handle the situation where no geocoding results are found
-        } s
+        }
 
         let savedListing = await newListing.save();
         console.log(savedListing);

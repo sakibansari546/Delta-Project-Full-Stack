@@ -175,9 +175,11 @@
                 <%- include('../includes/footer.ejs') %>
                     <script>
                         const mapToken = '<%= process.env.MAP_TOKEN %>';
-                        const coordinates = <% - JSON.stringify(listing.geometry.location.coordinates) %>
-                        // console.log(coordinate);
+                        const coordinates = <%= JSON.stringify(coordinates) %>;
+                        // Now you can use `coordinates` in your JavaScript code
+                        console.log(coordinates);
                     </script>
+
 
                     <script src="/js/review.js"></script>
                     <script src="/js/map.js"></script>
