@@ -117,6 +117,8 @@ app.use((req, res, next) => {
 // Passing the Listing Route
 app.use("/listing", listingRoute);
 
+
+
 // Passing the Review Route
 app.use("/listing/:id/review", reviewRoute);
 
@@ -125,6 +127,24 @@ app.use("/", userRoute);
 
 
 
+app.get('/listing/profile/:id', async (req, res) => {
+    try {
+        // Fetch the user's information based on the ID in the URL
+        const user = await User.findById(req.params.id);
+
+        // Fetch listings owned by the user
+        const listings = await Listing.find({ owner: req.params.id }).populate("owner");
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        res.render('./listings/profile.ejs', { user, listings });
+    } catch (error) {
+        console.error('Error fetching user information:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 
 

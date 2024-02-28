@@ -1,0 +1,138 @@
+<!-- index.ejs -->
+<% layout('/layouts/boilerplate') -%>
+
+    <link rel="stylesheet" href="/css/profile.css">
+
+    <body>
+        <%- include('../includes/navbar.ejs') %>
+            <%- include('../includes/flash.ejs') %>
+
+
+                <!-- 
+Enjoy the code <3
+-->
+                <div class="user-header-wrapper">
+                    <div class="user-header-inner">
+                        <div class="uh-left">
+                            <div class="uh-image">
+                                <img class="uh-image-inner" src="https://i.imgur.com/Qv1WDJq.jpg" alt="">
+                                <div class="gradient"></div>
+                            </div>
+                        </div>
+                        <div class="uh-right">
+                            <div class="user-info">
+                                <h3>
+                                    @<%= user.username %>
+                                        <svg class="uname-verified" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 1350.03 1326.16">
+                                            <defs>
+                                                <style>
+                                                    .cls-11 {
+                                                        fill: var(--blue);
+                                                    }
+
+                                                    .cls-12 {
+                                                        fill: #ffffff;
+                                                    }
+                                                </style>
+                                            </defs>
+                                            <title>verified</title>
+                                            <g id="Layer_3" data-name="Layer 3">
+                                                <polygon class="cls-11"
+                                                    points="0 747.37 120.83 569.85 70.11 355.04 283.43 292.38 307.3 107.41 554.93 107.41 693.66 0 862.23 120.83 1072.57 126.8 1112.84 319.23 1293.35 399.79 1256.05 614.6 1350.03 793.61 1197.87 941.29 1202.35 1147.15 969.64 1178.48 868.2 1326.16 675.02 1235.17 493.77 1315.72 354.99 1133.73 165.58 1123.29 152.16 878.64 0 747.37" />
+                                            </g>
+                                            <g id="Layer_2" data-name="Layer 2">
+                                                <path class="cls-12"
+                                                    d="M755.33,979.23s125.85,78.43,165.06,114c34.93-36,234.37-277.22,308.24-331.94,54.71,21.89,85,73.4,93,80.25-3.64,21.89-321.91,418.58-368.42,445.94-32.74-3.84-259-195.16-275.4-217C689.67,1049.45,725.24,1003.85,755.33,979.23Z"
+                                                    transform="translate(-322.83 -335.95)" />
+                                            </g>
+                                        </svg>
+                                </h3>
+                                <button class="btn">Edit Profile</button>
+                            </div>
+                            <div class=user-links>
+                                <p><b>Email :</b>
+                                    <%= user.email %>
+                                </p>
+                                <p><b>UserName :</b>
+                                    <%= user.username %>
+                                </p>
+                                <p><b>Total Listing :</b>
+                                    <%= listings.length %>
+                                </p>
+                            </div>
+                            <div class="user-bio">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-page-wrapper">
+
+                    <div class="row row-cols-lg-4 rew-cols-md-3 row-cols-sm-2">
+                        <% listings.forEach(listing=> { %>
+                            <a href="/listing/<%= listing._id %>">
+                                <div class="card col mb-5">
+                                    <img src="<%= listing.image.url %>"
+                                        style="height: 18rem; border-radius: 0 !important;"
+                                        class="card-img-top rounded-0" alt="listing Image">
+                                    <div class="card-body bg-white z-3">
+                                        <h4 class="fw-bold">@<%= listing.owner.username %>
+                                        </h4>
+                                        <h5 class="card-title">
+                                            <%= listing.title %>
+                                        </h5>
+                                        <p class="card-text">
+                                            <b>&#8377;<%= listing && listing.price ?
+                                                    listing.price.toLocaleString("en-IN") : 'N/A' %>
+                                            </b>&nbsp;<span>Night</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                            <% }); %>
+                    </div>
+                </div>
+                </div>
+                <div class="user-loader">
+                    <div class="loader">
+                        <svg class="circular" viewBox="25 25 50 50">
+                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+                                stroke-miterlimit="10" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="space"></div>
+
+                <script>
+                    // Get all image elements
+                    const images = document.querySelectorAll('.image');
+
+                    // Loop through each image element
+                    images.forEach((image, index) => {
+                        const overlay = document.getElementById(`iov${index + 1}`);
+
+                        // Add mouseenter event listener
+                        image.addEventListener('mouseenter', function () {
+                            overlay.style.opacity = "1";
+                        });
+
+                        // Add mouseleave event listener
+                        image.addEventListener('mouseleave', function () {
+                            overlay.style.opacity = "0";
+                        });
+                    });
+
+                    // Add click event listener to img1
+                    document.getElementById("img1").addEventListener('click', function () {
+                        document.getElementById("imgblock1").style.display = "flex";
+                    });
+
+                    // Add click event listener to imgblockbc1
+                    document.getElementById("imgblockbc1").addEventListener('click', function () {
+                        document.getElementById("imgblock1").style.display = "none";
+                    });
+
+                </script>
+    </body>

@@ -29,6 +29,13 @@ body {
 }
 
 
+.profile i {
+    font-size: larger;
+    padding: 9px 10px;
+    border: 3px solid black;
+    border-radius: 139px;
+}
+
 .register-bts button a {
     text-decoration: none;
     color: white;
@@ -45,18 +52,19 @@ body {
     border: 0;
     outline: 0;
     background: #E00B41;
-    padding: 6px 16px;
+    color: white;
+    padding: 5px 12px;
     margin-left: 5px;
 }
 
-.register-bts button:first-child a {
+/* .register-bts button:first-child a {
     color: #E00B41;
-}
+} */
 
-.register-bts button:first-child {
+/* .register-bts button:first-child {
     background: transparent;
-    border: 2px solid #E00B41;
-}
+    border: 1px solid #E00B41;
+} */
 
 .navbar {
     padding: 20px 70px !important;

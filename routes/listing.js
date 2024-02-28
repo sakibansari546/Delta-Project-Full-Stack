@@ -8,6 +8,8 @@ const { listingSchema } = require("../schema.js");
 const Listing = require("../models/listing.js");
 const { isLoggedIn, isOwner } = require('../middleware.js');
 
+const User = require("../models/user.js")
+
 const listingController = require("../controller/listings.js");
 
 const multer = require('multer')
@@ -35,6 +37,7 @@ router.get('/search', async (req, res) => {
         let listings;
         if (!country) {
             listings = await Listing.find().populate("owner");
+
         } else {
             listings = await Listing.find({ country }).populate("owner");
         }
@@ -44,6 +47,9 @@ router.get('/search', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
+
+
 
 
 // Create Route

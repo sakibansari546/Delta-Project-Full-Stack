@@ -24,15 +24,21 @@
             </form>
 
 
-            <div class="register-bts">
+            <div class="register-bts d-flex ">
+                <div class="profile mx-3">
+                    <% if (currUser) { %>
+                        <a class="text-black" href="/listing/profile/<%= currUser._id %>"><i
+                                class="fa-solid fa-user"></i></a>
+                        <% } %>
+                </div>
                 <% if (!currUser) { %>
-                    <button><a href="/login">LogIn</a></button>
                     <button><a href="/signup">Signup</a></button>
                     <% } %>
                         <% if (currUser) { %>
                             <button><a href="/logout">Logout</a></button>
                             <% } %>
             </div>
+
         </div>
     </div>
 </nav>
