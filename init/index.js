@@ -16,9 +16,25 @@ async function main() {
 
 async function initDB() {
     try {
-        // Uncomment the following line if you want to delete existing data before inserting new data
         await Listing.deleteMany({});
-        initData.data = initData.data.map((obj) => ({ ...obj, owner: "65d1dd79e048df199f1ec0bc" }))
+        initData.data = initData.data.map((obj, index) => {
+            if (obj.geometry && obj.geometry.location && obj.geometry.location.coordinates) {
+                return {
+                    ...obj,
+                    owner: "65d1dd79e048df199f1ec0bc",
+                    geometry: {
+                        location: {
+                            type: 'Point',
+                            coordinates: obj.geometry.location.coordinates
+                        }
+                    }
+                };
+            } else {
+                console.error(`Invalid data object at index ${index}:`, obj);
+                return null;
+            }
+        }).filter(Boolean);
+
         await Listing.insertMany(initData.data);
         console.log("Data added");
     } catch (err) {
@@ -27,6 +43,7 @@ async function initDB() {
         await mongoose.disconnect();
     }
 }
+
 
 // Call main function to connect to the database
 main().then(() => {
