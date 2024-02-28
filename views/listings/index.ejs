@@ -6,9 +6,10 @@
             <%- include('../includes/flash.ejs') %>
                 <div class="row row-cols-lg-4 rew-cols-md-3 row-cols-sm-2">
                     <% listings.forEach(listing=> { %>
-                        <a href="/listing/<%= listing._id %>">
-                            <div class="card col mb-5">
-                                <img src="<%= listing.image.url %>" style="height: 18rem; border-radius: 0 !important;"
+                        <a class="z-1" href="/listing/<%= listing._id %>">
+                            <div class="card col mb-5 z-2">
+                                <img class="" src="<%= listing.image.url %>"
+                                    style="height: 18rem; border-radius: 0 !important; z-index: -1 !important;"
                                     class="card-img-top rounded-0" alt="listing Image">
                                 <div class="card-body bg-white z-3">
                                     <h4 class="fw-bold">@<%= listing.owner.username %>
@@ -31,6 +32,9 @@
                         document.getElementById('searchForm').addEventListener('submit', async function (event) {
                             // event.preventDefault(); // Prevent default form submission behavior
                             const country = document.getElementById('countryInput').value;
+                            if (country.length == 0) {
+                                event.preventDefault()
+                            }
                             try {
                                 const response = await fetch(`/listing/search?country=${country}`);
                                 const listings = await response.json();

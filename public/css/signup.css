@@ -64,7 +64,7 @@
     outline: none;
 }
 
-button {
+.signip-container button {
     padding: 15px;
     border: none;
     border-radius: 8px;
@@ -75,7 +75,7 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+.signip-container button:hover {
     background-color: #0056b3;
 }
 

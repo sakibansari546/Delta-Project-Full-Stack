@@ -1,44 +1,45 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand text-sm-end ml-4" href="/listing"><i class="fa-regular fa-compass"></i> WanderLust</a>
-        <button class="navbar-toggler b-0" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="/listing">All Listing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/listing/new">Add new Listing</a>
-                </li>
-
-            </ul>
-            <!-- navbar.ejs -->
-            <form id="searchForm" class="d-flex" role="search" action="/listing/search" method="GET">
-                <input id="countryInput" class="form-control me-2" type="search" name="country" placeholder="Search"
-                    aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-
-
-            <div class="register-bts d-flex ">
-                <div class="profile mx-3">
-                    <% if (currUser) { %>
-                        <a class="text-black" href="/listing/profile/<%= currUser._id %>"><i
-                                class="fa-solid fa-user"></i></a>
-                        <% } %>
-                </div>
-                <% if (!currUser) { %>
-                    <button><a href="/signup">Signup</a></button>
-                    <% } %>
-                        <% if (currUser) { %>
-                            <button><a href="/logout">Logout</a></button>
-                            <% } %>
-            </div>
-
+<header>
+    <nav>
+        <div class="logo">
+            <i class="fa-regular fa-compass"></i><span>WanderLust</span>
         </div>
-    </div>
-</nav>
+        <div class="nav-list">
+            <ul>
+                <li><a href="/listing">Home</a></li>
+                <li><a href="/listing/new">New Listing</a></li>
+                <li><a href="#">Experiences</a></li>
+            </ul>
+        </div>
+        <div class="left-part">
+            <div class="search-feild">
+                <form id="searchForm" class="" action="/listing/search" method="GET">
+                    <input id="countryInput" class="" type="search" name="country" placeholder="Search"
+                        aria-label="Search">
+                    <button class="" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+            <div class="dropdown z-3">
+                <div class="profile-feild">
+                    <a class="text-black" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="icon-div">
+                            <i class="fa-solid fa-bars"></i>
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <% if (currUser) { %>
+                            <li><a class="dropdown-item" href="/listing/profile/<%= currUser._id %>">Profile</a></li>
+                            <% } %>
+                                <% if (!currUser) { %>
+                                    <li><a class="dropdown-item" href="/login">LogIn</a></li>
+                                    <li><a class="dropdown-item" href="/signup">SignUp</a></li>
+                                    <% } %>
+                                        <% if (currUser) { %>
+                                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                                            <% } %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
