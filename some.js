@@ -58,3 +58,25 @@
 
 
 
+<div class="row row-cols-lg-4 rew-cols-md-3 row-cols-sm-2">
+    <% listings.forEach(listing=> { %>
+    <a class="z-1" href="/listing/<%= listing._id %>">
+        <div class="card col mb-5 z-2">
+            <img class="" src="<%= listing.image.url %>"
+                style="height: 18rem; border-radius: 0 !important; z-index: -1 !important;"
+                class="card-img-top rounded-0" alt="listing Image">
+            <div class="card-body bg-white z-3">
+                <h4 class="fw-bold">@<%= listing.owner.username %>
+                </h4>
+                <h5 class="card-title">
+                    <%= listing.title %>
+                </h5>
+                <p class="card-text">
+                    <b>&#8377;<%= listing && listing.price ? listing.price.toLocaleString("en-IN")
+                            : 'N/A' %></b>&nbsp;<span>Night</span>
+                </p>
+            </div>
+        </div>
+    </a>
+    <% }); %>
+</div>

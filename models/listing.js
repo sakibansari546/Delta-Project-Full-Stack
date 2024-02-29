@@ -11,6 +11,11 @@ const listingSchema = new Schema({
         type: String,
         required: true
     },
+    created_by: {
+        type: Date,
+        default: Date.now(),
+        required: true
+    },
     image: {
         url: {
             type: String,
@@ -30,6 +35,10 @@ const listingSchema = new Schema({
         required: true
     },
     country: {
+        type: String,
+        required: true
+    },
+    city: {
         type: String,
         required: true
     },

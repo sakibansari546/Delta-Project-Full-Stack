@@ -52,6 +52,7 @@ module.exports.createListing = async (req, res, next) => {
             image: { url, filename },
             price: req.body.listing.price,
             location: req.body.listing.location,
+            city: req.body.listing.city,
             country: req.body.listing.country,
             reviews: [],
             owner: req.user._id,

@@ -42,12 +42,16 @@
                             value="<%= listing.country %>" required>
                     </div>
                 </div>
+                <div class="feild location-fld mb-2">
+                    <label for="message" class="form-label">City :</label>
+                    <input type="text" class="form-control" id="message" name="listing[city]"
+                        value="<%= listing.city %>" required>
+                </div>
                 <div class="feild location-fld">
                     <label for="message" class="form-label">Location :</label>
                     <input type="text" class="form-control" id="message" name="listing[location]"
                         value="<%= listing.location %>" required>
                 </div>
-
 
                 <input id="submit" type="submit" value="Submit">
             </form>

@@ -28,15 +28,21 @@ body {
     width: 60vw;
 }
 
-
-header nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+header {
+    width: 100%;
     position: sticky;
     top: 0;
     left: 0;
-    padding: 1.7vw 6vw;
+    z-index: 999 !important;
+    background: white;
+}
+
+header nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2vw 6vw;
     box-shadow: 1px 1px 5px lightgray;
 }
 
@@ -80,9 +86,9 @@ header nav .left-part {
 
 header nav .left-part .icon-div {
     border: 1px solid lightgray;
-    padding: .5vw .9vw;
+    padding: .5vw 1vw;
     font-size: 1.3vw;
-    border-radius: 20px;
+    border-radius: 50px;
     cursor: pointer;
 }
 
@@ -139,14 +145,67 @@ header nav .left-part .icon-div i:first-child {
     margin-left: 5px;
 }
 
-/* .register-bts button:first-child a {
-    color: #E00B41;
-} */
+.index-container {
+    display: block;
+    margin: 2vw 6vw;
+    margin-bottom: 4vw;
+}
 
-/* .register-bts button:first-child {
-    background: transparent;
-    border: 1px solid #E00B41;
-} */
+.listing-cards {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.listing-cards a {
+    text-decoration: none;
+    color: #000;
+}
+
+.listing-card {
+    width: 20vw;
+    /* background: #008A05; */
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.listing-image {
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.listing-image img {
+    width: 100%;
+    height: 100%;
+    transition: .2s linear;
+}
+
+.listing-image img:hover {
+    transform: scale(1.1);
+}
+
+.location,
+.price {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.place-name {
+    color: #888888;
+}
+
+.created-by {
+    color: #888888;
+}
+
+.price {}
+
+
 
 
 footer {
