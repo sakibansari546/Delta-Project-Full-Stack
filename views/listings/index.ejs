@@ -14,7 +14,9 @@
                                         <img src="<%= listing.image.url %>" alt="">
                                     </div>
                                     <div class="location">
-                                        <%= listing.city %>, <%= listing.country %>
+                                        <i>
+                                            <%= listing.city %> ,<%= listing.country %>
+                                        </i>
                                     </div>
                                     <div class="place-name">
                                         moldives
@@ -24,14 +26,18 @@
 
                                     </div>
                                     <div class="price">
-                                        <b>&#8377;<%= listing && listing.price ? listing.price.toLocaleString("en-IN")
-                                                : 'N/A' %></b>&nbsp;<span>Night</span>
+                                        &#8377;<%= listing && listing.price ? listing.price.toLocaleString("en-IN")
+                                            : 'N/A' %>&nbsp;<span>Night</span>
                                     </div>
                                 </div>
                             </a>
                             <% }); %>
                     </div>
                 </div>
+
+
+
+
 
                 <%- include('../includes/footer.ejs') %>
 

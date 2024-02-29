@@ -9,12 +9,26 @@ module.exports.index = async (req, res) => {
     res.render("./listings/index.ejs", { listings })
 }
 
-
-
 module.exports.renderNewForm = (req, res) => {
     res.render("./listings/new.ejs")
 }
 
+module.exports.listingSearching = async (req, res) => {
+    try {
+        const { country } = req.query;
+        let listings;
+        if (!country) {
+            listings = await Listing.find().populate("owner");
+
+        } else {
+            listings = await Listing.find({ country }).populate("owner");
+        }
+        res.render("./listings/index.ejs", { listings });
+    } catch (error) {
+        console.error('Error searching listings:', error);
+        res.status(500).send('Internal Server Error');
+    }
+}
 
 module.exports.showListing = async (req, res) => {
     let { id } = req.params;

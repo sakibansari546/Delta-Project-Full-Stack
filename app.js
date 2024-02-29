@@ -29,7 +29,8 @@ const Listing = require("./models/listing.js");
 
 const passport = require("passport")
 const LocalStrategy = require("passport-local")
-const User = require("./models/user.js")
+const User = require("./models/user.js");
+const { isLoggedIn } = require('./middleware.js');
 
 app.use(cookieParser("secretcode"));
 
@@ -127,7 +128,7 @@ app.use("/", userRoute);
 
 
 
-app.get('/listing/profile/:id', async (req, res) => {
+app.get('/listing/profile/:id', isLoggedIn, async (req, res) => {
     try {
         // Fetch the user's information based on the ID in the URL
         const user = await User.findById(req.params.id);

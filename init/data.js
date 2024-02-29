@@ -12,6 +12,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "United States",
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
@@ -30,6 +31,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "United States",
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
@@ -48,6 +50,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "United States",
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
@@ -66,6 +69,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "Italy",
     },
     {
@@ -81,6 +85,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "United States",
     },
     {
@@ -96,6 +101,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "Mexico",
     },
     {
@@ -111,6 +117,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "United States",
     },
     {
@@ -126,6 +133,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "United States",
     },
     {
@@ -141,6 +149,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "Switzerland",
     },
     {
@@ -156,6 +165,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "Tanzania",
     },
     {
@@ -171,6 +181,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "Netherlands",
     },
     {
@@ -186,6 +197,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "Fiji",
     },
     {
@@ -201,6 +213,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "United Kingdom",
     },
     {
@@ -216,6 +229,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "United States",
     },
     {
@@ -231,6 +245,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "Indonesia",
     },
     {
@@ -246,6 +261,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "Canada",
     },
     {
@@ -261,6 +277,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "United States",
     },
     {
@@ -276,6 +293,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "France",
     },
     {
@@ -291,6 +309,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "United States",
     },
     {
@@ -306,6 +325,7 @@ const sampleListings = [
         geometry: {
             location: { type: "Point", coordinates: [11.2558, 43.7696] }
         },
+        city: "New Delhi",
         country: "Greece",
     },
 ];

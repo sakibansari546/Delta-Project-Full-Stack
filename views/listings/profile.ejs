@@ -15,7 +15,9 @@ Enjoy the code <3
                     <div class="user-header-inner">
                         <div class="uh-left">
                             <div class="uh-image">
-                                <img class="uh-image-inner" src="https://i.imgur.com/Qv1WDJq.jpg" alt="">
+                                <img class="uh-image-inner"
+                                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                    alt="">
                                 <div class="gradient"></div>
                             </div>
                         </div>
@@ -68,26 +70,27 @@ Enjoy the code <3
                     </div>
                 </div>
 
-                <div class="user-page-wrapper">
-
-                    <div class="row row-cols-lg-4 rew-cols-md-3 row-cols-sm-2">
+                <div class="index-container">
+                    <div class="listing-cards">
                         <% listings.forEach(listing=> { %>
                             <a href="/listing/<%= listing._id %>">
-                                <div class="card col mb-5">
-                                    <img src="<%= listing.image.url %>"
-                                        style="height: 18rem; border-radius: 0 !important;"
-                                        class="card-img-top rounded-0" alt="listing Image">
-                                    <div class="card-body bg-white z-3">
-                                        <h4 class="fw-bold">@<%= listing.owner.username %>
-                                        </h4>
-                                        <h5 class="card-title">
-                                            <%= listing.title %>
-                                        </h5>
-                                        <p class="card-text">
-                                            <b>&#8377;<%= listing && listing.price ?
-                                                    listing.price.toLocaleString("en-IN") : 'N/A' %>
-                                            </b>&nbsp;<span>Night</span>
-                                        </p>
+                                <div class="listing-card">
+                                    <div class="listing-image">
+                                        <img src="<%= listing.image.url %>" alt="">
+                                    </div>
+                                    <div class="location">
+                                        <%= listing.city %>, <%= listing.country %>
+                                    </div>
+                                    <div class="place-name">
+                                        moldives
+                                    </div>
+                                    <div class="created-by">
+                                        <%= listing.created_by %>
+
+                                    </div>
+                                    <div class="price">
+                                        <b>&#8377;<%= listing && listing.price ? listing.price.toLocaleString("en-IN")
+                                                : 'N/A' %></b>&nbsp;<span>Night</span>
                                     </div>
                                 </div>
                             </a>

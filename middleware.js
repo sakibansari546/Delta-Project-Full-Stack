@@ -28,13 +28,15 @@ module.exports.isOwner = async (req, res, next) => {
     next()
 }
 
-module.exports.isReviewAuthor = async (req, res, next) => {
+module.exports.isReviewAuthorOrOwner = async (req, res, next) => {
     let { id, reviewId } = req.params;
     let review = await Review.findById(reviewId);
-    if (!res.locals.currUser || !review.author._id.equals(res.locals.currUser._id)) {
+    let listing = await Listing.findById(id);
+
+    if (!res.locals.currUser || (!review.author._id.equals(res.locals.currUser._id) && !listing.owner._id.equals(res.locals.currUser._id))) {
         req.flash("error", "You don't have permission to delete!!");
         return res.redirect(`/listing/${id}`);
     }
-    next()
+    next();
 }
 
