@@ -1,0 +1,80 @@
+@media only screen and (max-width: 1100px) {
+    header nav .logo {
+        font-size: 1.9vw;
+    }
+
+    header nav ul li a {
+        font-size: 1.4vw;
+    }
+
+}
+
+@media only screen and (max-width: 1050px) {
+    .listing-card {
+        width: 40vw;
+        margin-top: 40px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    header nav {
+        padding: 3vw 6vw;
+    }
+
+    header nav .logo {
+        font-size: 3.5vw;
+    }
+
+    header nav .logo i {
+        font-size: 3.9vw;
+    }
+
+
+    .nav-list-bar {
+        display: block;
+    }
+
+    .search .search-icon {
+        font-size: 20px;
+        color: #1c1c1c;
+    }
+
+    .input-box.open input {
+        padding: 0 10px 0 50px;
+    }
+
+    .input-box .search {
+        width: 40px;
+        height: 80%;
+    }
+
+    .input-box input {
+        width: 90%;
+        height: 80%;
+    }
+
+    .nav-list {
+        display: none;
+    }
+
+    header nav .left-part .icon-div {
+        font-size: 3.3vw;
+        padding: 1.2vw 2.6vw;
+    }
+
+
+    .listing-cards {
+        justify-content: center;
+    }
+
+    .listing-card {
+        width: 100%;
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    .footer-top-wrapper {
+        padding-right: 2vw;
+    }
+
+}

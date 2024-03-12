@@ -13,9 +13,18 @@
         <div class="left-part">
             <div class="search-feild">
                 <form id="searchForm" class="" action="/listing/search" method="GET">
-                    <input id="countryInput" class="" type="search" name="country" placeholder="Search"
-                        aria-label="Search">
-                    <button class="" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <!-- Code -->
+                    <div class="input-box">
+                        <input placeholder="Search..." id="countryInput" class="" type="search" name="country"
+                            aria-label="Search" />
+                        <button class="" type="submit">
+                            <span class="search">
+                                <i class="uil uil-search search-icon"></i>
+                            </span>
+                        </button>
+                        <i class="uil uil-times close-icon"></i>
+
+                    </div>
                 </form>
             </div>
             <div class="dropdown z-3">
@@ -37,9 +46,19 @@
                                         <% if (currUser) { %>
                                             <li><a class="dropdown-item" href="/logout">Logout</a></li>
                                             <% } %>
+                                                <div class="nav-list-bar">
+                                                    <li><a href="/listing">Home</a></li>
+                                                    <li><a href="/listing/new">New Listing</a></li>
+                                                    <li><a href="#">Experiences</a></li>
+                                                </div>
+
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
 </header>
+
+<script>// ---- ---- Const ---- ---- //
+
+</script>

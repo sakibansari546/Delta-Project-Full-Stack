@@ -66,6 +66,10 @@ header nav ul {
     margin-bottom: 0 !important;
 }
 
+.nav-list-bar {
+    display: none;
+}
+
 header nav ul li a {
     text-decoration: none;
     color: #323232;
@@ -99,17 +103,104 @@ header nav .left-part .icon-div i:first-child {
 
 
 #searchForm {
-    margin-right: 1.2vw;
-    /* background: #000000; */
+    /* margin-right: .2vw; */
+    /* width: 110px; */
 }
 
-#searchForm input {
+/* #searchForm input {
+    padding: .5vw .8vw;
+    border-radius: 3vw;
+    outline: 0;
+    border: 1px solid lightgray;
+    margin-right: -2.8vw;
+} */
+
+.input-box {
+    position: relative;
+    width: 60%;
+    max-width: 45px;
+    height: 45px;
+    margin: 0 50px;
+    /* background-color: #fff; */
+    border-radius: 6px;
+    transition: all 0.5s ease-in-out;
+}
+
+.input-box.open {
+    max-width: 350px;
+}
+
+.input-box input {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    padding: 0 15px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    transition: all 0.5s ease-in-out;
     padding: .5vw .8vw;
     border-radius: 3vw;
     outline: 0;
     border: 1px solid lightgray;
     margin-right: -2.8vw;
 }
+
+.input-box.open input {
+    padding: 0 15px 0 65px;
+}
+
+.input-box .search {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid lightgray;
+    background-color: #fff;
+    border-radius: 500px;
+    cursor: pointer;
+}
+
+.input-box.open .search {
+    border-radius: 500px;
+
+}
+
+.search .search-icon {
+    font-size: 25px;
+    color: #1c1c1c;
+}
+
+.input-box .close-icon {
+    position: absolute;
+    top: 52%;
+    right: -0;
+    font-size: 30px;
+    color: #1c1c1c;
+    padding: 5px;
+    transform: translateY(-50%);
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.input-box.open .close-icon {
+    transform: translateY(-50%) rotate(180deg);
+    pointer-events: auto;
+    opacity: 1;
+}
+
+
+
+
 
 .dropdown-menu {
     z-index: 999 !important;
@@ -156,7 +247,7 @@ header nav .left-part .icon-div i:first-child {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .listing-cards a {
@@ -165,10 +256,11 @@ header nav .left-part .icon-div i:first-child {
 }
 
 .listing-card {
-    width: 20vw;
-    /* background: #008A05; */
+    /* flex-basis: 50%; */
+    width: 24vw;
+    height: 50vh;
     cursor: pointer;
-    margin-bottom: 40px;
+    margin-bottom: 90px;
 }
 
 .listing-image {

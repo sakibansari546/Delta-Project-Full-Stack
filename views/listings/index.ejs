@@ -44,11 +44,25 @@
                     <script>
                         // JavaScript code to handle search form submission and update listings
                         document.getElementById('searchForm').addEventListener('submit', async function (event) {
-                            // event.preventDefault(); // Prevent default form submission behavior
                             const country = document.getElementById('countryInput').value;
                             if (country.length == 0) {
                                 event.preventDefault();
                             }
+
+                            let inputBox = document.querySelector('.input-box'),
+                                searchIcon = document.querySelector('.search'),
+                                closeIcon = document.querySelector('.close-icon');
+
+                            // ---- ---- Open Input ---- ---- //
+                            searchIcon.addEventListener('click', () => {
+                                inputBox.classList.add('open');
+                            });
+                            // ---- ---- Close Input ---- ---- //
+                            closeIcon.addEventListener('click', () => {
+                                inputBox.classList.remove('open');
+                            });
+                            // event.preventDefault(); // Prevent default form submission behavior
+
                             try {
                                 const response = await fetch(`/listing/search?country=${country}`);
                                 const listings = await response.json();
