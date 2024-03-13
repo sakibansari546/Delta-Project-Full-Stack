@@ -23,8 +23,6 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 
-const req = require('express/lib/request.js');
-
 const Listing = require("./models/listing.js");
 
 const passport = require("passport")
@@ -84,9 +82,9 @@ const validateReview = (req, res, next) => {
 
 
 // Define a route for the root path
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
+// app.get('/', (req, res) => {
+//     res.send('Hello, World!');
+// });
 
 
 app.use(session(sessionOptions));
